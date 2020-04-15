@@ -8,17 +8,10 @@ function App() {
   const [raise, setRaise] = useState(0);
   const [taxCat, setTaxCat] = useState("");
   const [expenses, setExpenses] = useState(0);
-  const [kCont, setKCont] = useState(0);
-  const [kComCont, setKComCont] = useState(0);
-  const [rothCont, setRothCont] = useState(0);
   const [savingsCont, setSavingsCont] = useState(0);
   const [otherCont, setOtherCont] = useState(0);
-  const [kRate, setKRate] = useState(0);
-  const [rothRate, setRothRate] = useState(0);
   const [savingsRate, setSavingsRate] = useState(0);
   const [otherRate, setOtherRate] = useState(0);
-  const [kValue, setKValue] = useState(0);
-  const [rothValue, setRothValue] = useState(0);
   const [savingsValue, setSavingsValue] = useState(0);
   const [otherValue, setOtherValue] = useState(0);
   const [formOne, toggleFormOne] = useState(true);
@@ -27,8 +20,6 @@ function App() {
   const [formFour, toggleFormFour] = useState(false);
   const [formFive, toggleFormFive] = useState(false);
   const [formSix, toggleFormSix] = useState(false);
-  const [formSeven, toggleFormSeven] = useState(false);
-  const [formEight, toggleFormEight] = useState(false);
 
   let compoundExpenses;
   let compoundIncome;
@@ -179,25 +170,20 @@ function App() {
     } else console.log("no");
 
     const equation =
-      (income * ((1 + raise / 100) ^ (fireAge - age)) - kCont) *
+      (income * ((1 + raise / 100) ^ (fireAge - age))) *
         (1 - taxBracket) -
-      rothCont -
       savingsCont -
       otherCont;
     compoundIncome = equation;
   };
 
   const calcInvest = () => {
-    const kInvest =
-      (kValue + kCont + kComCont) * ((1 + kRate / 100) ^ (fireAge - age));
-    const rothInvest =
-      (rothValue + rothCont) * ((1 + rothRate / 100) ^ (fireAge - age));
     const savingsInvest =
       (savingsValue + savingsCont) *
       ((1 + savingsRate / 100) ^ (fireAge - age));
     const otherInvest =
       (otherValue + otherCont) * ((1 + otherRate / 100) ^ (fireAge - age));
-    const equation = kInvest + rothInvest + savingsInvest + otherInvest;
+    const equation = savingsInvest + otherInvest;
     invest = equation;
   };
 
@@ -330,28 +316,22 @@ function App() {
         ""
       ) : (
         <div className="field">
-          <h2>Investments: 401k</h2>
+          <h2>Savings</h2>
           <span>current value $</span>
           <input
-            onChange={e => setKValue(parseInt(e.target.value, 10))}
+            onChange={e => setSavingsValue(parseInt(e.target.value, 10))}
             type="text"
             maxLength="8"
           />
           <span>interest rate %</span>
           <input
-            onChange={e => setKRate(parseInt(e.target.value, 10))}
+            onChange={e => setSavingsRate(parseInt(e.target.value, 10))}
             type="text"
             maxLength="2"
           />
           <span>annual contribution $</span>
           <input
-            onChange={e => setKCont(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="8"
-          />
-          <span>annual company contribution $</span>
-          <input
-            onChange={e => setKComCont(parseInt(e.target.value, 10))}
+            onChange={e => setSavingsCont(parseInt(e.target.value, 10))}
             type="text"
             maxLength="8"
           />
@@ -383,101 +363,7 @@ function App() {
         ""
       ) : (
         <div className="field">
-          <h2>Investments: Roth IRA</h2>
-          <span>current value $</span>
-          <input
-            onChange={e => setRothValue(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="8"
-          />
-          <span>interest rate %</span>
-          <input
-            onChange={e => setRothRate(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="2"
-          />
-          <span>annual contribution $</span>
-          <input
-            onChange={e => setRothCont(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="8"
-          />
-          <div className="nav-buttons">
-            <button
-              className="previous"
-              onClick={() => {
-                toggleFormFour(true);
-                toggleFormFive(false);
-                window.scroll(0, 0);
-              }}
-            >
-              Previous
-            </button>
-            <button
-              className="next"
-              onClick={() => {
-                toggleFormFive(false);
-                toggleFormSix(true);
-                window.scroll(0, 0);
-              }}
-            >
-              Next
-            </button>
-          </div>
-        </div>
-      )}
-      {formSix === false ? (
-        ""
-      ) : (
-        <div className="field">
-          <h2>Investments: Savings</h2>
-          <span>current value $</span>
-          <input
-            onChange={e => setSavingsValue(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="8"
-          />
-          <span>interest rate %</span>
-          <input
-            onChange={e => setSavingsRate(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="2"
-          />
-          <span>annual contribution $</span>
-          <input
-            onChange={e => setSavingsCont(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="8"
-          />
-          <div className="nav-buttons">
-            <button
-              className="previous"
-              onClick={() => {
-                toggleFormFive(true);
-                toggleFormSix(false);
-                window.scroll(0, 0);
-              }}
-            >
-              Previous
-            </button>
-            <button
-              className="next"
-              onClick={() => {
-                toggleFormSix(false);
-                toggleFormSeven(true);
-                window.scroll(0, 0);
-              }}
-            >
-              Next
-            </button>
-          </div>
-        </div>
-      )}
-      {formSeven === false ? (
-        ""
-      ) : (
-        <div className="field">
-          <h2>Investments: Other</h2>
+          <h2>Accessable Investments</h2>
           <span>current value $</span>
           <input
             onChange={e => setOtherValue(parseInt(e.target.value, 10))}
@@ -500,8 +386,8 @@ function App() {
             <button
               className="previous"
               onClick={() => {
-                toggleFormSix(true);
-                toggleFormSeven(false);
+                toggleFormFour(true);
+                toggleFormFive(false);
                 window.scroll(0, 0);
               }}
             >
@@ -515,8 +401,8 @@ function App() {
                 calcInvest();
                 calcFire();
                 findAge();
-                toggleFormSeven(false);
-                toggleFormEight(true);
+                toggleFormFive(false);
+                toggleFormSix(true);
                 window.scroll(0, 0);
               }}
             >
@@ -525,7 +411,7 @@ function App() {
           </div>
         </div>
       )}
-      {formEight === false ? (
+      {formSix === false ? (
         ""
       ) : (
         <div>
@@ -534,7 +420,7 @@ function App() {
             className="restart"
             onClick={() => {
               toggleFormOne(true);
-              toggleFormEight(false);
+              toggleFormSix(false);
               window.scroll(0, 0);
             }}
           >
