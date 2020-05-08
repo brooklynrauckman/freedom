@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import "./styles.css";
+import Final from "./Final.js";
+import CurrentAge from "./CurrentAge.js";
+import Income from "./Income.js";
+import Expenses from "./Expenses.js";
+import Savings from "./Savings.js";
+import Investments from "./Investments.js";
 
 function App() {
   const [age, setAge] = useState(0);
@@ -170,8 +176,7 @@ function App() {
     } else console.log("no");
 
     const equation =
-      (income * ((1 + raise / 100) ^ (fireAge - age))) *
-        (1 - taxBracket) -
+      income * ((1 + raise / 100) ^ (fireAge - age)) * (1 - taxBracket) -
       savingsCont -
       otherCont;
     compoundIncome = equation;
@@ -209,224 +214,71 @@ function App() {
       {formOne === false ? (
         ""
       ) : (
-        <div className="field">
-          <h2>Current Age</h2>
-          <input
-            onChange={e => setAge(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="2"
-          />
-          <button
-            className="next"
-            onClick={() => {
-              toggleFormOne(false);
-              toggleFormTwo(true);
-              window.scroll(0, 0);
-            }}
-          >
-            Next
-          </button>
-        </div>
+        <CurrentAge
+          setAge={setAge}
+          toggleFormOne={toggleFormOne}
+          toggleFormTwo={toggleFormTwo}
+        />
       )}
       {formTwo === false ? (
         ""
       ) : (
-        <div className="field">
-          <h2>Income</h2>
-          <span>annual gross income $</span>
-          <input
-            onChange={e => setIncome(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="8"
-          />
-          <span>annual raise %</span>
-          <input
-            onChange={e => setRaise(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="2"
-          />
-          <span>tax filing category</span>
-          <select onChange={e => setTaxCat(e.target.value)}>
-            <option> </option>
-            <option>single</option>
-            <option>married filing jointly</option>
-            <option>married filing seperate</option>
-            <option>head of household</option>
-          </select>
-          <div className="nav-buttons">
-            <button
-              className="previous"
-              onClick={() => {
-                toggleFormOne(true);
-                toggleFormTwo(false);
-                window.scroll(0, 0);
-              }}
-            >
-              Previous
-            </button>
-            <button
-              className="next"
-              onClick={() => {
-                toggleFormTwo(false);
-                toggleFormThree(true);
-                window.scroll(0, 0);
-              }}
-            >
-              Next
-            </button>
-          </div>
-        </div>
+        <Income
+          setIncome={setIncome}
+          setRaise={setRaise}
+          setTaxCat={setTaxCat}
+          toggleFormThree={toggleFormThree}
+          toggleFormTwo={toggleFormTwo}
+          toggleFormOne={toggleFormOne}
+        />
       )}
       {formThree === false ? (
         ""
       ) : (
-        <div className="field">
-          <h2>Expenses</h2>
-          <span>annual expenses $</span>
-          <input
-            onChange={e => setExpenses(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="8"
-          />
-          <div className="nav-buttons">
-            <button
-              className="previous"
-              onClick={() => {
-                toggleFormTwo(true);
-                toggleFormThree(false);
-                window.scroll(0, 0);
-              }}
-            >
-              Previous
-            </button>
-            <button
-              className="next"
-              onClick={() => {
-                toggleFormThree(false);
-                toggleFormFour(true);
-                window.scroll(0, 0);
-              }}
-            >
-              Next
-            </button>
-          </div>
-        </div>
+        <Expenses
+          setExpenses={setExpenses}
+          toggleFormThree={toggleFormThree}
+          toggleFormTwo={toggleFormTwo}
+          toggleFormFour={toggleFormFour}
+        />
       )}
       {formFour === false ? (
         ""
       ) : (
-        <div className="field">
-          <h2>Savings</h2>
-          <span>current value $</span>
-          <input
-            onChange={e => setSavingsValue(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="8"
-          />
-          <span>interest rate %</span>
-          <input
-            onChange={e => setSavingsRate(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="2"
-          />
-          <span>annual contribution $</span>
-          <input
-            onChange={e => setSavingsCont(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="8"
-          />
-          <div className="nav-buttons">
-            <button
-              className="previous"
-              onClick={() => {
-                toggleFormThree(true);
-                toggleFormFour(false);
-                window.scroll(0, 0);
-              }}
-            >
-              Previous
-            </button>
-            <button
-              className="next"
-              onClick={() => {
-                toggleFormFour(false);
-                toggleFormFive(true);
-                window.scroll(0, 0);
-              }}
-            >
-              Next
-            </button>
-          </div>
-        </div>
+        <Savings
+          setSavingsCont={setSavingsCont}
+          setSavingsRate={setSavingsRate}
+          setSavingsValue={setSavingsValue}
+          toggleFormThree={toggleFormThree}
+          toggleFormFive={toggleFormFive}
+          toggleFormFour={toggleFormFour}
+        />
       )}
       {formFive === false ? (
         ""
       ) : (
-        <div className="field">
-          <h2>Accessable Investments</h2>
-          <span>current value $</span>
-          <input
-            onChange={e => setOtherValue(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="8"
-          />
-          <span>interest rate %</span>
-          <input
-            onChange={e => setOtherRate(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="2"
-          />
-          <span>annual contribution $</span>
-          <input
-            onChange={e => setOtherCont(parseInt(e.target.value, 10))}
-            type="text"
-            maxLength="8"
-          />
-          <div className="nav-buttons">
-            <button
-              className="previous"
-              onClick={() => {
-                toggleFormFour(true);
-                toggleFormFive(false);
-                window.scroll(0, 0);
-              }}
-            >
-              Previous
-            </button>
-            <button
-              className="calculate"
-              onClick={() => {
-                calcCompoundIncome();
-                calcCompoundExpenses();
-                calcInvest();
-                calcFire();
-                findAge();
-                toggleFormFive(false);
-                toggleFormSix(true);
-                window.scroll(0, 0);
-              }}
-            >
-              Calculate
-            </button>
-          </div>
-        </div>
+        <Investments
+          setOtherCont={setOtherCont}
+          setOtherRate={setOtherRate}
+          setOtherValue={setOtherValue}
+          toggleFormSix={toggleFormSix}
+          toggleFormFive={toggleFormFive}
+          toggleFormFour={toggleFormFour}
+          findAge={findAge}
+          calcFire={calcFire}
+          calcInvest={calcInvest}
+          calcCompoundIncome={calcCompoundIncome}
+          calcCompoundExpenses={calcCompoundExpenses}
+        />
       )}
       {formSix === false ? (
         ""
       ) : (
-        <div>
-          <h1 className="free-age">{freeAge}</h1>
-          <button
-            className="restart"
-            onClick={() => {
-              toggleFormOne(true);
-              toggleFormSix(false);
-              window.scroll(0, 0);
-            }}
-          >
-            Restart
-          </button>
-        </div>
+        <Final
+          freeAge={freeAge}
+          toggleFormSix={toggleFormSix}
+          toggleFormOne={toggleFormOne}
+        />
       )}
     </div>
   );
