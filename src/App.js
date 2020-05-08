@@ -26,6 +26,7 @@ function App() {
   const [formFour, toggleFormFour] = useState(false);
   const [formFive, toggleFormFive] = useState(false);
   const [formSix, toggleFormSix] = useState(false);
+  const [flip, updateFlip] = useState(false);
 
   let compoundExpenses;
   let compoundIncome;
@@ -218,6 +219,8 @@ function App() {
           setAge={setAge}
           toggleFormOne={toggleFormOne}
           toggleFormTwo={toggleFormTwo}
+          flip={flip}
+          updateFlip={updateFlip}
         />
       )}
       {formTwo === false ? (
@@ -230,6 +233,8 @@ function App() {
           toggleFormThree={toggleFormThree}
           toggleFormTwo={toggleFormTwo}
           toggleFormOne={toggleFormOne}
+          flip={flip}
+          updateFlip={updateFlip}
         />
       )}
       {formThree === false ? (
@@ -240,6 +245,8 @@ function App() {
           toggleFormThree={toggleFormThree}
           toggleFormTwo={toggleFormTwo}
           toggleFormFour={toggleFormFour}
+          flip={flip}
+          updateFlip={updateFlip}
         />
       )}
       {formFour === false ? (
@@ -252,6 +259,8 @@ function App() {
           toggleFormThree={toggleFormThree}
           toggleFormFive={toggleFormFive}
           toggleFormFour={toggleFormFour}
+          flip={flip}
+          updateFlip={updateFlip}
         />
       )}
       {formFive === false ? (
@@ -269,6 +278,8 @@ function App() {
           calcInvest={calcInvest}
           calcCompoundIncome={calcCompoundIncome}
           calcCompoundExpenses={calcCompoundExpenses}
+          flip={flip}
+          updateFlip={updateFlip}
         />
       )}
       {formSix === false ? (
@@ -278,6 +289,8 @@ function App() {
           freeAge={freeAge}
           toggleFormSix={toggleFormSix}
           toggleFormOne={toggleFormOne}
+          flip={flip}
+          updateFlip={updateFlip}
         />
       )}
     </div>
