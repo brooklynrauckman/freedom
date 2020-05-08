@@ -4,49 +4,50 @@ import "./styles.css";
 function Investments(props) {
   const {
     setOtherCont,
+    otherCont,
     setOtherRate,
+    otherRate,
     setOtherValue,
-    toggleFormSix,
-    toggleFormFive,
-    toggleFormFour,
+    otherValue,
+    updateActiveForm,
     findAge,
     calcFire,
     calcInvest,
     calcCompoundIncome,
     calcCompoundExpenses,
-    flip,
-    updateFlip,
   } = props;
   return (
     <div className="field">
       <div className="scene">
-        <div className={flip ? "card" : "flip-card"}>
-          <div className={flip ? "card-inner" : "flip-card-inner"}>
+        <div className="card">
+          <div className="card-inner">
             <h2>Accessable Investments</h2>
             <span>current value $</span>
             <input
               onChange={(e) => setOtherValue(parseInt(e.target.value, 10))}
               type="text"
               maxLength="8"
+              placeholder={otherValue > 0 ? otherValue : ""}
             />
             <span>interest rate %</span>
             <input
               onChange={(e) => setOtherRate(parseInt(e.target.value, 10))}
               type="text"
               maxLength="2"
+              placeholder={otherRate > 0 ? otherRate : ""}
             />
             <span>annual contribution $</span>
             <input
               onChange={(e) => setOtherCont(parseInt(e.target.value, 10))}
               type="text"
               maxLength="8"
+              placeholder={otherCont > 0 ? otherCont : ""}
             />
             <div className="nav-buttons">
               <button
                 className="previous"
                 onClick={() => {
-                  toggleFormFour(true);
-                  toggleFormFive(false);
+                  updateActiveForm(3);
                   window.scroll(0, 0);
                 }}
               >
@@ -60,8 +61,7 @@ function Investments(props) {
                   calcInvest();
                   calcFire();
                   findAge();
-                  toggleFormFive(false);
-                  toggleFormSix(true);
+                  updateActiveForm(5);
                   window.scroll(0, 0);
                 }}
               >

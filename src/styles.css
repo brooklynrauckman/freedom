@@ -13,9 +13,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh + 4rem;
-  margin: 0 2rem;
-  padding: 5rem 0;
+  height: calc(100vh - 2rem);
+  padding: 5rem 2rem;
 }
 
 input,
@@ -44,6 +43,13 @@ select {
 .title {
   color: #f05d5e;
   font-size: 2.5rem;
+}
+
+.sub-title {
+  color: inherit;
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  margin-top: 0;
 }
 
 .free-age {
@@ -102,7 +108,7 @@ select:hover {
 .scene {
   width: 100%;
   min-width: 350px;
-  height: auto;
+  height: 100%;
   perspective: 1000px;
 }
 
@@ -110,33 +116,12 @@ select:hover {
   width: 100%;
   height: 100%;
   padding: 1rem 2rem;
-  transition: transform 0.2s linear;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #e7ecef;
   border-radius: 30px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
-}
-
-.flip-card {
-  width: 100%;
-  height: 100%;
-  padding: 1rem 2rem;
-  transform: rotateY(180deg);
-  transition: transform 0.2s linear;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e7ecef;
-  border-radius: 30px;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
-}
-
-.flip-card-inner {
-  font-size: 2rem;
-  color: #2f2f2f;
-  transform: rotateY(180deg);
 }
 
 .card-inner {

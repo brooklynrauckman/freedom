@@ -4,44 +4,45 @@ import "./styles.css";
 function Savings(props) {
   const {
     setSavingsCont,
+    savingsCont,
     setSavingsRate,
+    savingsRate,
     setSavingsValue,
-    toggleFormThree,
-    toggleFormFive,
-    toggleFormFour,
-    flip,
-    updateFlip,
+    savingsValue,
+    updateActiveForm,
   } = props;
   return (
     <div className="field">
       <div className="scene">
-        <div className={flip ? "card" : "flip-card"}>
-          <div className={flip ? "card-inner" : "flip-card-inner"}>
+        <div className="card">
+          <div className="card-inner">
             <h2>Savings</h2>
             <span>current value $</span>
             <input
               onChange={(e) => setSavingsValue(parseInt(e.target.value, 10))}
               type="text"
               maxLength="8"
+              placeholder={savingsValue > 0 ? savingsValue : ""}
             />
             <span>interest rate %</span>
             <input
               onChange={(e) => setSavingsRate(parseInt(e.target.value, 10))}
               type="text"
               maxLength="2"
+              placeholder={savingsRate > 0 ? savingsRate : ""}
             />
             <span>annual contribution $</span>
             <input
               onChange={(e) => setSavingsCont(parseInt(e.target.value, 10))}
               type="text"
               maxLength="8"
+              placeholder={savingsCont > 0 ? savingsCont : ""}
             />
             <div className="nav-buttons">
               <button
                 className="previous"
                 onClick={() => {
-                  toggleFormThree(true);
-                  toggleFormFour(false);
+                  updateActiveForm(2);
                   window.scroll(0, 0);
                 }}
               >
@@ -50,8 +51,7 @@ function Savings(props) {
               <button
                 className="next"
                 onClick={() => {
-                  toggleFormFour(false);
-                  toggleFormFive(true);
+                  updateActiveForm(4);
                   window.scroll(0, 0);
                 }}
               >

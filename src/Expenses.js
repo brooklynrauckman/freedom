@@ -2,32 +2,25 @@ import React from "react";
 import "./styles.css";
 
 function Expenses(props) {
-  const {
-    setExpenses,
-    toggleFormThree,
-    toggleFormTwo,
-    toggleFormFour,
-    flip,
-    updateFlip,
-  } = props;
+  const { setExpenses, expenses, updateActiveForm } = props;
   return (
     <div className="field">
       <div className="scene">
-        <div className={flip ? "card" : "flip-card"}>
-          <div className={flip ? "card-inner" : "flip-card-inner"}>
+        <div className="card">
+          <div className="card-inner">
             <h2>Expenses</h2>
             <span>annual expenses $</span>
             <input
               onChange={(e) => setExpenses(parseInt(e.target.value, 10))}
               type="text"
               maxLength="8"
+              placeholder={expenses > 0 ? expenses : ""}
             />
             <div className="nav-buttons">
               <button
                 className="previous"
                 onClick={() => {
-                  toggleFormTwo(true);
-                  toggleFormThree(false);
+                  updateActiveForm(1);
                   window.scroll(0, 0);
                 }}
               >
@@ -36,8 +29,7 @@ function Expenses(props) {
               <button
                 className="next"
                 onClick={() => {
-                  toggleFormThree(false);
-                  toggleFormFour(true);
+                  updateActiveForm(3);
                   window.scroll(0, 0);
                 }}
               >

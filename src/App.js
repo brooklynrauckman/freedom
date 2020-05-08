@@ -20,13 +20,8 @@ function App() {
   const [otherRate, setOtherRate] = useState(0);
   const [savingsValue, setSavingsValue] = useState(0);
   const [otherValue, setOtherValue] = useState(0);
-  const [formOne, toggleFormOne] = useState(true);
-  const [formTwo, toggleFormTwo] = useState(false);
-  const [formThree, toggleFormThree] = useState(false);
-  const [formFour, toggleFormFour] = useState(false);
-  const [formFive, toggleFormFive] = useState(false);
-  const [formSix, toggleFormSix] = useState(false);
-  const [flip, updateFlip] = useState(false);
+  const [activeForm, updateActiveForm] = useState(0);
+  const [fireValue, setFireValue] = useState(0);
 
   let compoundExpenses;
   let compoundIncome;
@@ -207,90 +202,80 @@ function App() {
       calcFire();
     }
     setFreeAge(fireAge + 1);
+    setFireValue(25 * expenses);
   };
 
   return (
     <div className="App">
-      <h1 className="title">Age of Freedom</h1>
-      {formOne === false ? (
+      {activeForm !== 0 ? (
         ""
       ) : (
         <CurrentAge
           setAge={setAge}
-          toggleFormOne={toggleFormOne}
-          toggleFormTwo={toggleFormTwo}
-          flip={flip}
-          updateFlip={updateFlip}
+          age={age}
+          updateActiveForm={updateActiveForm}
         />
       )}
-      {formTwo === false ? (
+      {activeForm !== 1 ? (
         ""
       ) : (
         <Income
           setIncome={setIncome}
+          income={income}
           setRaise={setRaise}
+          raise={raise}
           setTaxCat={setTaxCat}
-          toggleFormThree={toggleFormThree}
-          toggleFormTwo={toggleFormTwo}
-          toggleFormOne={toggleFormOne}
-          flip={flip}
-          updateFlip={updateFlip}
+          taxCat={taxCat}
+          updateActiveForm={updateActiveForm}
         />
       )}
-      {formThree === false ? (
+      {activeForm !== 2 ? (
         ""
       ) : (
         <Expenses
           setExpenses={setExpenses}
-          toggleFormThree={toggleFormThree}
-          toggleFormTwo={toggleFormTwo}
-          toggleFormFour={toggleFormFour}
-          flip={flip}
-          updateFlip={updateFlip}
+          expenses={expenses}
+          updateActiveForm={updateActiveForm}
         />
       )}
-      {formFour === false ? (
+      {activeForm !== 3 ? (
         ""
       ) : (
         <Savings
           setSavingsCont={setSavingsCont}
+          savingsCont={savingsCont}
           setSavingsRate={setSavingsRate}
+          savingsRate={savingsRate}
           setSavingsValue={setSavingsValue}
-          toggleFormThree={toggleFormThree}
-          toggleFormFive={toggleFormFive}
-          toggleFormFour={toggleFormFour}
-          flip={flip}
-          updateFlip={updateFlip}
+          savingsValue={savingsValue}
+          updateActiveForm={updateActiveForm}
         />
       )}
-      {formFive === false ? (
+      {activeForm !== 4 ? (
         ""
       ) : (
         <Investments
           setOtherCont={setOtherCont}
+          otherCont={otherCont}
           setOtherRate={setOtherRate}
+          otherRate={otherRate}
           setOtherValue={setOtherValue}
-          toggleFormSix={toggleFormSix}
-          toggleFormFive={toggleFormFive}
-          toggleFormFour={toggleFormFour}
+          otherValue={otherValue}
+          updateActiveForm={updateActiveForm}
           findAge={findAge}
           calcFire={calcFire}
           calcInvest={calcInvest}
           calcCompoundIncome={calcCompoundIncome}
           calcCompoundExpenses={calcCompoundExpenses}
-          flip={flip}
-          updateFlip={updateFlip}
         />
       )}
-      {formSix === false ? (
+      {activeForm !== 5 ? (
         ""
       ) : (
         <Final
           freeAge={freeAge}
-          toggleFormSix={toggleFormSix}
-          toggleFormOne={toggleFormOne}
-          flip={flip}
-          updateFlip={updateFlip}
+          fireValue={fireValue}
+          updateActiveForm={updateActiveForm}
         />
       )}
     </div>
