@@ -21,7 +21,7 @@ function Investments(props) {
       <div className="scene">
         <div className="card">
           <div className="card-inner">
-            <h2>Accessable Investments</h2>
+            <h2>Accessible Investments</h2>
             <span>current value $</span>
             <input
               onChange={(e) => setOtherValue(parseInt(e.target.value, 10))}
